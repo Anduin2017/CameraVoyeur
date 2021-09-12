@@ -8,7 +8,9 @@
 
 直接从[GitHub Release](https://github.com/Anduin2017/CameraVoyeur/releases)下载即可。
 
-## 如何运行
+（仅限Windows）
+
+## 如何从源码运行（仅限Windows）
 
 直接拿VS打开，F5启动即可。
 
