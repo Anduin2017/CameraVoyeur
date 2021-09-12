@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace temp
+namespace Trick
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -33,6 +33,7 @@ namespace temp
                 return;
             }
 
+            IP.IsEnabled = false;
             Status.IsEnabled = false;
             Status.Content = "正在黑入...";
             var stopWatch = new Stopwatch();
@@ -54,9 +55,9 @@ namespace temp
             else if (progress >= 98.012)
                 return "正在开启对方的摄像头";
             else if (progress >= 97.321)
-                return "正在登录对方的系统";
+                return "正在开启远程主机的权限";
             else if (progress >= 91.987)
-                return "正在验证得到的密码并安装远程操控驱动";
+                return "正在尝试登入系统并安装远程操控驱动";
             else if (progress >= 75.129)
                 return "正在暴力破解对方的密码，这可能会花费一段时间";
             else if (progress >= 70.583)
