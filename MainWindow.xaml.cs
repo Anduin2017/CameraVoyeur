@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,7 +28,13 @@ namespace Trick
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var continueHack = MessageBox.Show("利用系统漏洞黑入对方摄像头是违法行为！\r\n由此产生的一切责任与开发者无关！", "摄像头黑入器", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if(!this.ValidateIPv4(IP.Text))
+            {
+                MessageBox.Show("IP地址并不是一个正确的远程IP！", "摄像头黑入器", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var continueHack = MessageBox.Show($"即将开始黑入远程主机{IP.Text}！\r\n\r\n警告：利用系统漏洞黑入对方摄像头是违法行为，可能会被追踪法律责任！\r\n由此产生的一切责任与开发者无关！", "摄像头黑入器", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (continueHack == MessageBoxResult.Cancel)
             {
                 return;
@@ -38,11 +45,13 @@ namespace Trick
             Status.Content = "正在黑入...";
             var stopWatch = new Stopwatch();
             stopWatch.Start();
+            var ran = new Random();
             while (true)
             {
-                await Task.Delay(1);
+                await Task.Delay(ran.Next(0, 3000));
                 var x = stopWatch.Elapsed.TotalSeconds;
-                this.Progress.Value = 100 * (x - Math.Sqrt(x)) / (x - 1);
+                var k = 5;
+                this.Progress.Value = 100 * (x - k * Math.Sqrt(x)) / (x - k * k);
                 Text.Content = $"{this.Progress.Value:N2}%";
                 this.Status.Content = $"{GetDetails(this.Progress.Value)}...\r\n请不要退出。";
             }
@@ -50,7 +59,9 @@ namespace Trick
 
         private string GetDetails(double progress)
         {
-            if (progress >= 99.101)
+            if (progress >= 100)
+                return "黑入成功";
+            else if (progress >= 99.101)
                 return "正在加载视频预览";
             else if (progress >= 98.012)
                 return "正在开启对方的摄像头";
@@ -62,14 +73,37 @@ namespace Trick
                 return "正在暴力破解对方的密码，这可能会花费一段时间";
             else if (progress >= 70.583)
                 return "正在搜索合适的密码破解算法";
-            else if (progress >= 65.257)
-                return "正在验证系统版本";
-            else if (progress >= 60.234)
+            else if (progress >= 64.257)
                 return "正在扫描对方的漏洞";
+            else if (progress >= 61.234)
+                return "正在验证系统版本";
             else if (progress >= 55.123)
                 return "正在建立网络连接";
             else
                 return "正在初始化";
+        }
+
+        public bool ValidateIPv4(string ipString)
+        {
+            if (String.IsNullOrWhiteSpace(ipString))
+            {
+                return false;
+            }
+
+            string[] splitValues = ipString.Split('.');
+            if (splitValues.Length != 4)
+            {
+                return false;
+            }
+
+            if(splitValues[0].Trim() == "127" || splitValues[0].Trim() == "0")
+            {
+                return false;
+            }
+
+            byte tempForParsing;
+
+            return splitValues.All(r => byte.TryParse(r, out tempForParsing));
         }
     }
 }

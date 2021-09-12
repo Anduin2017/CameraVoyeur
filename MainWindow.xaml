@@ -9,7 +9,7 @@
         <ProgressBar Height="19" Margin="50,30,90,0" VerticalAlignment="Top" x:Name="Progress"/>
         <Label Content="0%" HorizontalAlignment="Right" Margin="0,27,30,0" VerticalAlignment="Top" x:Name="Text"/>
         <Button Content="黑入对方摄像头" HorizontalAlignment="Right" Margin="0,68,90,0" VerticalAlignment="Top" Height="58" Width="289" Click="Button_Click" x:Name="Status"/>
-        <TextBox HorizontalAlignment="Left" Margin="188,85,0,0" Text="192.168.50.1" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" Height="22" x:Name="IP"/>
+        <TextBox HorizontalAlignment="Left" Margin="188,85,0,0" Text="0.0.0.0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" Height="22" x:Name="IP"/>
         <Label Content="对方IP地址:" HorizontalAlignment="Left" Margin="91,81,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
