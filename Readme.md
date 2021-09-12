@@ -2,6 +2,10 @@
 
 此摄像头黑入器可以直接黑入任意IP地址的摄像头。
 
+## 下载地址
+
+直接从[GitHub Release](https://github.com/Anduin2017/CameraVoyeur/releases)下载即可。
+
 ## 如何运行
 
 直接拿VS打开，F5启动即可。
