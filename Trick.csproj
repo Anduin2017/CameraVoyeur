@@ -10,4 +10,18 @@
 		<PublishReadyToRun>true</PublishReadyToRun>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="sc2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="sc2.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Assets\sc2.jpg">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

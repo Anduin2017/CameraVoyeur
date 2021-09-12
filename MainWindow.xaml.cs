@@ -19,7 +19,7 @@ namespace Trick
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (this.Progress.Value > 60)
+            if (this.Progress.Value > 60 && this.Progress.Value < 100)
             {
                 MessageBox.Show("网络连接已建立，正在运行黑入计划……暂时无法退出。请稍后重试。", "摄像头黑入器", MessageBoxButton.OK, MessageBoxImage.Error);
                 e.Cancel = true;
@@ -28,7 +28,7 @@ namespace Trick
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(!this.ValidateIPv4(IP.Text))
+            if (!this.ValidateIPv4(IP.Text))
             {
                 MessageBox.Show("IP地址并不是一个正确的远程IP！", "摄像头黑入器", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -51,9 +51,24 @@ namespace Trick
                 await Task.Delay(ran.Next(0, 3000));
                 var x = stopWatch.Elapsed.TotalSeconds;
                 var k = 5;
-                this.Progress.Value = 100 * (x - k * Math.Sqrt(x)) / (x - k * k);
-                Text.Content = $"{this.Progress.Value:N2}%";
-                this.Status.Content = $"{GetDetails(this.Progress.Value)}...\r\n请不要退出。";
+                var y = 100 * (x - k * Math.Sqrt(x)) / (x - k * k);
+                if (y >= 100)
+                {
+                    y = 100;
+                }
+
+                this.Progress.Value = y;
+                Text.Content = $"{y:N2}%";
+                this.Status.Content = $"{GetDetails(y)}...\r\n请不要退出。";
+
+                if (y == 100)
+                {
+                    this.Progress.Value = 100;
+                    this.Status.Content = $"黑入成功";
+
+                    new CameraWindow().Show();
+                    return;
+                }
             }
         }
 
@@ -96,7 +111,7 @@ namespace Trick
                 return false;
             }
 
-            if(splitValues[0].Trim() == "127" || splitValues[0].Trim() == "0")
+            if (splitValues[0].Trim() == "127" || splitValues[0].Trim() == "0")
             {
                 return false;
             }
