@@ -8,6 +8,9 @@
 
 或使用.NET SDK，运行命令 `dotnet run`即可。
 
+![sc](./Assets/sc1.png)
+![sc](./Assets/sc2.jpg)
+
 ## 如何贡献
 
 将这个项目编译出来的内容发给基友，即可让他享受一个快乐的下午。
