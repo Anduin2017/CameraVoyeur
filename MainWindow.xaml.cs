@@ -52,6 +52,7 @@ namespace Trick
                 await Task.Delay(ran.Next(0, 3000));
                 var x = stopWatch.Elapsed.TotalSeconds;
 
+                // k 为速度参数。建议取值： 1 - 100
                 // 如果你需要让进度条更加平缓，考虑增加变量 k 的值。
                 var k = 5;
 
