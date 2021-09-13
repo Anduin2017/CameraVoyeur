@@ -22,7 +22,7 @@
 
 或使用.NET SDK，运行命令 `dotnet run`即可。
 
-![sc](./Assets/sc3.png)
+![sc3](./Assets/sc3.png)
 
 ## 如何贡献
 

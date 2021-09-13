@@ -46,29 +46,26 @@ namespace Trick
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             var ran = new Random();
+            
             while (true)
             {
+                // 如果你在构建逗你玩下载器
+                // 请删除这段随机逻辑，改成 await Task.Delay(1);
+
                 await Task.Delay(ran.Next(0, 3000));
                 var x = stopWatch.Elapsed.TotalSeconds;
+
+                // 如果你需要让进度条更加平缓，考虑增加变量 k 的值。
                 var k = 5;
+
+                // y = 100 (x - k sqrt x) / (x - k ^ 2)
+                // Google:
+                // https://www.google.com.hk/search?q=y+%3D++%28x+-+sqrt+x%29+%2F+%28x+-+1%29
                 var y = 100 * (x - k * Math.Sqrt(x)) / (x - k * k);
-                if (y >= 100)
-                {
-                    y = 100;
-                }
 
                 this.Progress.Value = y;
                 Text.Content = $"{y:N2}%";
                 this.Status.Content = $"{GetDetails(y)}...\r\n请不要退出。";
-
-                if (y == 100)
-                {
-                    this.Progress.Value = 100;
-                    this.Status.Content = $"黑入成功";
-
-                    new CameraWindow().Show();
-                    return;
-                }
             }
         }
 
@@ -139,6 +136,8 @@ namespace Trick
         }
     }
 }
+
+
 
 // 额外
 
