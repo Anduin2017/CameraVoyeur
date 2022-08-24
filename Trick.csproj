@@ -9,5 +9,6 @@
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<PublishReadyToRun>true</PublishReadyToRun>
 	<TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 </Project>
