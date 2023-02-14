@@ -52,3 +52,11 @@ Idea based on Rick Astley
 
 Learn more at: https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ````
+
+### 社区版本
+
+社区里有不少开发者将这个项目移植到了其它版本。包括：
+
+* [React (Web)](https://camerahack.fissssssh.com/)
+* [Python (CLI)](https://github.com/ErickRen2023/ChatRick)
+
